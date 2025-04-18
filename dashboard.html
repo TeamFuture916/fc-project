@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000, #2c3e50); /* Dark futuristic background */
+            color: #ecf0f1;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #34495e;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 2em;
+            color: #00ffff;
+            font-weight: 300;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #bdc3c7;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #00ffff;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .module {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid #00ffff;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .module:hover {
+            transform: translateY(-5px);
+        }
+
+        .module h3 {
+            color: #00ffff;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .module p {
+            color: #bdc3c7;
+            line-height: 1.6;
+        }
+
+        .module ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .module ul li {
+            margin-bottom: 10px;
+            color: #bdc3c7;
+        }
+
+        .module .status {
+            color: #2ecc71; /* Example status color */
+            font-weight: bold;
+        }
+
+        .student-info {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid #00ffff;
+            margin-bottom: 30px;
+        }
+
+        .student-info h2 {
+            color: #00ffff;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 400;
+            font-size: 1.8em;
+        }
+
+        .student-info p {
+            color: #bdc3c7;
+            margin-bottom: 10px;
+        }
+
+        .student-info strong {
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        /* More futuristic UI elements can be added here */
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <div class="logo"><span style="color: #00ffff;">STUDENT</span> PORTAL</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Grades</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="student-info">
+            <h2>Your Information</h2>
+            <p><strong>Name:</strong> <span id="displayName"></span></p>
+            <p><strong>Roll Number:</strong> <span id="displayRollNumber"></span></p>
+            <p><strong>College:</strong> <span id="displayCollege"></span></p>
+            <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+            <p><strong>Year:</strong> <span id="displayYear"></span></p>
+        </div>
+
+        <div class="module-grid">
+            <div class="module">
+                <h3>Announcements</h3>
+                <ul>
+                    <li>New assignment posted for Mathematics.</li>
+                    <li>Upcoming holiday on May 1st - No classes.</li>
+                    <li>Check out the latest library resources online.</li>
+                </ul>
+            </div>
+
+            <div class="module">
+                <h3>Your Courses</h3>
+                <ul>
+                    <li>Introduction to Programming <span class="status">Ongoing</span></li>
+                    <li>Calculus I <span class="status">Ongoing</span></li>
+                    <li>Linear Algebra <span class="status">Upcoming</span></li>
+                </ul>
+            </div>
+
+            <div class="module">
+                <h3>Upcoming Deadlines</h3>
+                <ul>
+                    <li>Math Assignment 1: April 25th</li>
+                    <li>Programming Project Proposal: April 28th</li>
+                </ul>
+            </div>
+
+            <div class="module">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Student Email</a></li>
+                    <li><a href="#">Learning Management System</a></li>
+                    <li><a href="#">Academic Calendar</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const displayName = urlParams.get('name');
+        const displayRollNumber = urlParams.get('rollNumber');
+        const displayCollege = urlParams.get('college');
+        const displayEmail = urlParams.get('email');
+        const displayYear = urlParams.get('year');
+
+        // Display the information on the dashboard
+        document.getElementById('displayName').textContent = displayName || 'N/A';
+        document.getElementById('displayRollNumber').textContent = displayRollNumber || 'N/A';
+        document.getElementById('displayCollege').textContent = displayCollege || 'N/A';
+        document.getElementById('displayEmail').textContent = displayEmail || 'N/A';
+        document.getElementById('displayYear').textContent = displayYear || 'N/A';
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Sign In</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #000000); /* Dark gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #ecf0f1; /* Light text color */
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #3498db; /* Accent color */
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #bdc3c7;
+            font-weight: 300;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            border: 1px solid #34495e;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 1em;
+        }
+
+        select {
+            appearance: none; /* Remove default arrow */
+            background-image: linear-gradient(45deg, transparent 50%, #bdc3c7 50%, #bdc3c7 68%, transparent 68%),
+                              linear-gradient(135deg, transparent 50%, #bdc3c7 50%, #bdc3c7 68%, transparent 68%);
+            background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+            background-size: 5px 5px, 5px 5px;
+            background-repeat: no-repeat;
+            padding-right: 30px; /* Make space for the custom arrow */
+        }
+
+        select option {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        button {
+            background-color: #3498db; /* Accent button color */
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .futuristic-input::placeholder {
+            color: #7f8c8d; /* Placeholder text color */
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2><span style="color: #00ffff;">S</span>tudent <span style="color: #00ffff;">S</span>ign In</h2>
+        <form id="signInForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="futuristic-input" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="rollNumber">Roll Number:</label>
+                <input type="text" id="rollNumber" name="rollNumber" class="futuristic-input" placeholder="Enter your roll number" required>
+            </div>
+            <div class="form-group">
+                <label for="college">College:</label>
+                <input type="text" id="college" name="college" class="futuristic-input" placeholder="Enter your college name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="futuristic-input" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="year">Year of Student:</label>
+                <select id="year" name="year" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="1st">1st Year</option>
+                    <option value="2nd">2nd Year</option>
+                    <option value="3rd">3rd Year</option>
+                    <option value="4th">4th Year</option>
+                    </select>
+            </div>
+            <button type="submit">ENTER <span style="font-size: 0.8em;">PORTAL</span></button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('signInForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('name');
+            const rollNumberInput = document.getElementById('rollNumber');
+            const collegeInput = document.getElementById('college');
+            const emailInput = document.getElementById('email');
+            const yearSelect = document.getElementById('year');
+
+            const name = nameInput.value.trim();
+            const rollNumber = rollNumberInput.value.trim();
+            const college = collegeInput.value.trim();
+            const email = emailInput.value.trim();
+            const year = yearSelect.value;
+
+            // For this simplified example, we'll pass the data as URL parameters
+            // to the dashboard page. In a real application, you might use
+            // server-side sessions or local storage (with caution for sensitive data).
+            window.location.href = `dashboard.html?name=${encodeURIComponent(name)}&rollNumber=${encodeURIComponent(rollNumber)}&college=${encodeURIComponent(college)}&email=${encodeURIComponent(email)}&year=${encodeURIComponent(year)}`;
+        });
+    </script>
+</body>
+</html>
